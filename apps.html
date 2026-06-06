@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AppVerse - Apps Portfolio</title>
+  <meta name="description" content="Explore AppVerse's native Android applications. Download APKs, read release notes, and check app features.">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Tailwind Theme Config -->
+  <script src="js/tailwind.config.js"></script>
+
+  <!-- Pre-render theme switcher script -->
+  <script src="js/theme.js"></script>
+
+  <!-- Phosphor Icons CDN -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body x-data="globalState" class="bg-slate-50 text-slate-900 dark:bg-darkbg-900 dark:text-slate-100 min-h-screen transition-colors duration-500 overflow-x-hidden relative">
+
+  <!-- Liquid Background Grid Overlay -->
+  <div class="absolute inset-0 bg-[linear-gradient(to_right,rgba(99,102,241,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(99,102,241,0.03)_1px,transparent_1px)] bg-[size:4rem_4rem] dark:bg-[linear-gradient(to_right,rgba(99,102,241,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(99,102,241,0.05)_1px,transparent_1px)] pointer-events-none"></div>
+
+  <!-- Background Morphing Blobs -->
+  <div class="absolute top-20 right-[10%] w-[380px] h-[380px] floating-blob blob-1"></div>
+  <div class="absolute bottom-20 left-[-100px] w-[450px] h-[450px] floating-blob blob-2"></div>
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 w-full px-6 py-4">
+    <div class="max-w-7xl mx-auto glass-card rounded-2xl px-6 py-4 flex items-center justify-between border-opacity-40">
+      
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-accent-cyan via-accent-blue to-accent-violet p-[2px] transition-transform duration-300 group-hover:scale-110">
+          <div class="w-full h-full bg-slate-900 rounded-[10px] flex items-center justify-center">
+            <i class="ph-bold ph-android-logo text-accent-cyan text-2xl"></i>
+          </div>
+        </div>
+        <span class="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-accent-cyan via-accent-blue to-accent-violet bg-clip-text text-transparent">AppVerse</span>
+      </a>
+
+      <!-- Navigation links -->
+      <nav class="hidden md:flex items-center gap-2">
+        <a href="index.html" class="px-4 py-2 rounded-xl text-sm font-semibold hover:bg-slate-200 hover:bg-opacity-50 dark:hover:bg-white dark:hover:bg-opacity-5 text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition-all duration-300">Home</a>
+        <a href="apps.html" class="px-4 py-2 rounded-xl text-sm font-semibold nav-link-active text-slate-900 dark:text-white">Apps</a>
+        <a href="about.html" class="px-4 py-2 rounded-xl text-sm font-semibold hover:bg-slate-200 hover:bg-opacity-50 dark:hover:bg-white dark:hover:bg-opacity-5 text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition-all duration-300">About Us</a>
+        <a href="contact.html" class="px-4 py-2 rounded-xl text-sm font-semibold hover:bg-slate-200 hover:bg-opacity-50 dark:hover:bg-white dark:hover:bg-opacity-5 text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition-all duration-300">Contact</a>
+        <a href="legal.html" class="px-4 py-2 rounded-xl text-sm font-semibold hover:bg-slate-200 hover:bg-opacity-50 dark:hover:bg-white dark:hover:bg-opacity-5 text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition-all duration-300">Legal</a>
+      </nav>
+
+      <!-- Utilities -->
+      <div class="flex items-center gap-3">
+        <!-- Theme Switcher -->
+        <button @click="toggleTheme()" class="w-10 h-10 rounded-xl glass-card flex items-center justify-center text-slate-700 dark:text-slate-200 hover:scale-105 active:scale-95 transition-transform" aria-label="Toggle theme">
+          <template x-if="darkMode">
+            <i class="ph-bold ph-sun text-lg text-amber-400"></i>
+          </template>
+          <template x-if="!darkMode">
+            <i class="ph-bold ph-moon-stars text-lg text-indigo-600"></i>
+          </template>
+        </button>
+
+        <a href="apps.html" class="hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-xl bg-gradient-to-r from-accent-cyan to-accent-blue text-white text-sm font-bold shadow-lg shadow-cyan-500/20 hover:scale-105 transition-all duration-300 glass-btn">
+          View Apps
+        </a>
+
+        <!-- Mobile Toggler -->
+        <button @click="mobileMenuOpen = !mobileMenuOpen" class="md:hidden w-10 h-10 rounded-xl glass-card flex items-center justify-center text-slate-700 dark:text-slate-200 hover:scale-105">
+          <i class="ph-bold" :class="mobileMenuOpen ? 'ph-x' : 'ph-list'"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Dropdown Navigation -->
+  <div x-show="mobileMenuOpen" 
+       x-transition:enter="transition ease-out duration-300"
+       x-transition:enter-start="opacity-0 -translate-y-4"
+       x-transition:enter-end="opacity-100 translate-y-0"
+       x-transition:leave="transition ease-in duration-200"
+       x-transition:leave-start="opacity-100 translate-y-0"
+       x-transition:leave-end="opacity-0 -translate-y-4"
+       class="md:hidden fixed top-24 inset-x-6 z-40"
+       style="display: none;">
+    <div class="glass-card rounded-2xl p-6 flex flex-col gap-4 shadow-xl border-opacity-50">
+      <a href="index.html" class="px-4 py-3 rounded-xl font-medium hover:bg-slate-200 hover:bg-opacity-50 dark:hover:bg-white dark:hover:bg-opacity-5 text-slate-700 dark:text-slate-300">Home</a>
+      <a href="apps.html" class="px-4 py-3 rounded-xl font-bold bg-slate-200 bg-opacity-60 dark:bg-white dark:bg-opacity-10 text-slate-900 dark:text-white">Apps</a>
+      <a href="about.html" class="px-4 py-3 rounded-xl font-medium hover:bg-slate-200 hover:bg-opacity-50 dark:hover:bg-white dark:hover:bg-opacity-5 text-slate-700 dark:text-slate-300">About Us</a>
+      <a href="contact.html" class="px-4 py-3 rounded-xl font-medium hover:bg-slate-200 hover:bg-opacity-50 dark:hover:bg-white dark:hover:bg-opacity-5 text-slate-700 dark:text-slate-300">Contact</a>
+      <a href="legal.html" class="px-4 py-3 rounded-xl font-medium hover:bg-slate-200 hover:bg-opacity-50 dark:hover:bg-white dark:hover:bg-opacity-5 text-slate-700 dark:text-slate-300">Legal</a>
+      <hr class="border-slate-200 dark:border-slate-800">
+      <a href="apps.html" class="w-full text-center py-3 rounded-xl bg-gradient-to-r from-accent-cyan to-accent-blue text-white font-bold glass-btn shadow-lg">Explore Catalog</a>
+    </div>
+  </div>
+
+  <!-- Main Catalog Area -->
+  <main x-data="appsCatalog" class="max-w-7xl mx-auto px-6 pt-12 pb-24 relative z-10">
+    
+    <!-- Title and Description -->
+    <div class="text-left mb-12 reveal">
+      <h1 class="text-4xl font-extrabold tracking-tight mb-3">Our Applications</h1>
+      <p class="text-slate-600 dark:text-slate-400 max-w-xl">Search and filter through our portfolio of custom-engineered Android software utilities and tools.</p>
+    </div>
+
+    <!-- Search and Categories Panel -->
+    <section class="glass-card rounded-[28px] border-opacity-40 p-6 mb-12 flex flex-col md:flex-row items-center gap-6 justify-between reveal">
+      
+      <!-- Live Search Box -->
+      <div class="relative w-full md:w-80">
+        <i class="ph-bold ph-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 opacity-50"></i>
+        <input type="text" 
+               x-model="searchQuery" 
+               placeholder="Search by app name or keyword..." 
+               class="w-full pl-11 pr-4 py-3 rounded-xl glass-input text-sm font-medium">
+      </div>
+
+      <!-- Categories Filter Tabs -->
+      <div class="flex flex-wrap items-center gap-2 w-full md:w-auto">
+        <template x-for="cat in categories" :key="cat">
+          <button @click="selectedCategory = cat" 
+                  class="px-4 py-2.5 rounded-xl text-xs font-bold transition-all duration-300 border"
+                  :class="selectedCategory === cat 
+                    ? 'bg-slate-900 text-white dark:bg-white dark:text-slate-900 border-transparent shadow-md' 
+                    : 'bg-white bg-opacity-20 border-slate-300 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 hover:bg-opacity-50 dark:hover:bg-white dark:hover:bg-opacity-5'">
+            <span x-text="cat"></span>
+          </button>
+        </template>
+      </div>
+
+    </section>
+
+    <!-- App Cards Grid -->
+    <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      
+      <template x-for="app in filteredApps()" :key="app.id">
+        <div class="glass-card glass-card-hover glass-sweep rounded-3xl p-6 border-opacity-40 flex flex-col justify-between h-[320px] reveal">
+          
+          <div>
+            <!-- Header elements (Icon, Name, Category) -->
+            <div class="flex items-start justify-between mb-4">
+              <div class="w-14 h-14 rounded-2xl p-[2px] bg-gradient-to-tr shadow-md" :class="app.color">
+                <div class="w-full h-full bg-slate-900 rounded-[14px] flex items-center justify-center">
+                  <i class="ph-fill text-white text-3xl" :class="app.icon"></i>
+                </div>
+              </div>
+              
+              <!-- Download Count Badge -->
+              <span class="text-[10px] font-bold px-2 py-1 rounded-md bg-slate-200/50 dark:bg-white/5 opacity-80 flex items-center gap-1">
+                <i class="ph-bold ph-download-simple"></i>
+                <span x-text="app.downloads"></span>
+              </span>
+            </div>
+            
+            <h3 class="text-xl font-bold mb-1 text-slate-900 dark:text-white" x-text="app.name"></h3>
+            <span class="inline-block text-[10px] font-bold tracking-wide uppercase text-accent-cyan mb-3" x-text="app.category"></span>
+            
+            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed line-clamp-3" x-text="app.description"></p>
+          </div>
+
+          <!-- Bottom Actions (Rating, Details Button) -->
+          <div class="flex items-center justify-between border-t border-slate-200 dark:border-slate-800 pt-5">
+            <span class="text-xs font-semibold opacity-75 flex items-center gap-1">
+              <i class="ph-fill ph-star text-amber-400 text-sm"></i>
+              <span x-text="app.rating"></span>
+            </span>
+
+            <button @click="openDetails(app)" class="px-4 py-2 rounded-xl bg-slate-900 text-white dark:bg-white dark:text-slate-900 text-xs font-bold hover:scale-[1.03] active:scale-95 transition-transform shadow-md">
+              Details
+            </button>
+          </div>
+
+        </div>
+      </template>
+
+      <!-- Empty Search State -->
+      <div x-show="filteredApps().length === 0" class="col-span-full py-16 text-center glass-card rounded-[28px] border-opacity-40 reveal">
+        <i class="ph-bold ph-warning-circle text-5xl text-accent-cyan mb-4 animate-bounce"></i>
+        <h3 class="text-xl font-bold mb-2">No apps found</h3>
+        <p class="text-sm opacity-60 max-w-sm mx-auto">We couldn't find any app matching "<span x-text="searchQuery" class="font-semibold text-accent-cyan"></span>" in the "<span x-text="selectedCategory" class="font-semibold"></span>" category.</p>
+        <button @click="searchQuery = ''; selectedCategory = 'All';" class="mt-6 px-5 py-2.5 rounded-xl bg-gradient-to-r from-accent-cyan to-accent-blue text-white text-xs font-bold glass-btn shadow-md">Reset Search</button>
+      </div>
+
+    </section>
+
+    <!-- App Details Modal Dialog -->
+    <div x-show="modalOpen" 
+         class="fixed inset-0 z-50 flex items-center justify-center p-6 bg-slate-900/60 dark:bg-black/70 backdrop-blur-md"
+         x-transition:enter="transition ease-out duration-300"
+         x-transition:enter-start="opacity-0"
+         x-transition:enter-end="opacity-100"
+         x-transition:leave="transition ease-in duration-200"
+         x-transition:leave-start="opacity-100"
+         x-transition:leave-end="opacity-0"
+         style="display: none;">
+      
+      <!-- Modal Container -->
+      <div class="glass-card rounded-[36px] w-full max-w-3xl max-h-[85vh] overflow-y-auto border-opacity-60 border-white/50 dark:border-white/10 shadow-2xl relative p-6 md:p-8"
+           @click.outside="closeDetails()"
+           x-transition:enter="transition ease-out duration-300"
+           x-transition:enter-start="opacity-0 scale-95"
+           x-transition:enter-end="opacity-100 scale-100"
+           x-transition:leave="transition ease-in duration-200"
+           x-transition:leave-start="opacity-100 scale-100"
+           x-transition:leave-end="opacity-0 scale-95">
+
+        <!-- Close Button -->
+        <button @click="closeDetails()" class="absolute top-6 right-6 w-10 h-10 rounded-full glass-card flex items-center justify-center hover:scale-105 active:scale-95 transition-transform" aria-label="Close details">
+          <i class="ph-bold ph-x text-lg"></i>
+        </button>
+
+        <!-- Modal Content (Conditional check to prevent null errors) -->
+        <div x-if="activeApp" x-show="activeApp !== null">
+          
+          <!-- Header Area -->
+          <div class="flex flex-col md:flex-row items-start md:items-center gap-6 mb-8 mt-4">
+            <div class="w-20 h-20 rounded-3xl p-[3px] bg-gradient-to-tr shadow-lg" :class="activeApp?.color">
+              <div class="w-full h-full bg-slate-900 rounded-[21px] flex items-center justify-center">
+                <i class="ph-fill text-white text-5xl" :class="activeApp?.icon"></i>
+              </div>
+            </div>
+            <div>
+              <div class="flex flex-wrap items-center gap-2 mb-1.5">
+                <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white" x-text="activeApp?.name"></h2>
+                <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-500 dark:text-emerald-400" x-text="activeApp?.version"></span>
+              </div>
+              
+              <div class="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs opacity-65 font-medium">
+                <span class="flex items-center gap-1 text-accent-cyan font-bold uppercase" x-text="activeApp?.category"></span>
+                <span>•</span>
+                <span class="flex items-center gap-1"><i class="ph-bold ph-calendar-blank"></i> <span x-text="activeApp?.releaseDate"></span></span>
+                <span>•</span>
+                <span class="flex items-center gap-1"><i class="ph-bold ph-hard-drive"></i> <span x-text="activeApp?.fileSize"></span></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stats Quick Banner -->
+          <div class="grid grid-cols-3 gap-4 p-4 rounded-2xl bg-slate-200/50 dark:bg-white/5 border border-slate-300/40 dark:border-slate-800/40 mb-8">
+            <div class="text-center">
+              <div class="text-lg font-bold text-slate-800 dark:text-white" x-text="activeApp?.downloads"></div>
+              <div class="text-[10px] opacity-60">Downloads</div>
+            </div>
+            <div class="text-center border-x border-slate-300 dark:border-slate-800">
+              <div class="text-lg font-bold text-slate-800 dark:text-white flex items-center justify-center gap-1">
+                <span x-text="activeApp?.rating"></span>
+                <i class="ph-fill ph-star text-amber-400 text-sm"></i>
+              </div>
+              <div class="text-[10px] opacity-60">Avg Rating</div>
+            </div>
+            <div class="text-center">
+              <div class="text-lg font-bold text-slate-800 dark:text-white">OS 9.0+</div>
+              <div class="text-[10px] opacity-60">Requirement</div>
+            </div>
+          </div>
+
+          <!-- Description and Features -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+            <div>
+              <h4 class="font-extrabold text-sm uppercase tracking-wider opacity-50 mb-3">About App</h4>
+              <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed" x-text="activeApp?.detailedDescription"></p>
+            </div>
+            <div>
+              <h4 class="font-extrabold text-sm uppercase tracking-wider opacity-50 mb-3">Key Features</h4>
+              <ul class="flex flex-col gap-2">
+                <template x-for="(feat, idx) in activeApp?.features" :key="idx">
+                  <li class="text-sm flex items-center gap-2 text-slate-700 dark:text-slate-200">
+                    <i class="ph-bold ph-check text-emerald-500"></i>
+                    <span x-text="feat"></span>
+                  </li>
+                </template>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Changelog -->
+          <div class="mb-8">
+            <h4 class="font-extrabold text-sm uppercase tracking-wider opacity-50 mb-3">What's New in this Build</h4>
+            <ul class="p-5 rounded-2xl bg-white bg-opacity-20 dark:bg-slate-900 dark:bg-opacity-40 border border-slate-200 dark:border-slate-800/80 flex flex-col gap-3">
+              <template x-for="(log, idx) in activeApp?.changelog" :key="idx">
+                <li class="text-xs leading-relaxed flex items-start gap-2.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-accent-cyan mt-1.5 flex-shrink-0"></span>
+                  <span x-text="log"></span>
+                </li>
+              </template>
+            </ul>
+          </div>
+
+          <!-- Simulator Screenshots -->
+          <div class="mb-8">
+            <h4 class="font-extrabold text-sm uppercase tracking-wider opacity-50 mb-4">Screenshots</h4>
+            <div class="flex items-center gap-4 overflow-x-auto pb-2">
+              <div class="w-40 h-64 rounded-2xl bg-gradient-to-b from-slate-800 to-slate-950 flex-shrink-0 flex items-center justify-center border border-white/10 text-white font-medium p-4 text-center text-xs">
+                <div>
+                  <i class="ph-bold ph-layout text-2xl text-accent-cyan mb-2"></i>
+                  <p>Dashboard</p>
+                </div>
+              </div>
+              <div class="w-40 h-64 rounded-2xl bg-gradient-to-b from-slate-800 to-slate-950 flex-shrink-0 flex items-center justify-center border border-white/10 text-white font-medium p-4 text-center text-xs">
+                <div>
+                  <i class="ph-bold ph-chart-bar-horizontal text-2xl text-accent-blue mb-2"></i>
+                  <p>Analytics View</p>
+                </div>
+              </div>
+              <div class="w-40 h-64 rounded-2xl bg-gradient-to-b from-slate-800 to-slate-950 flex-shrink-0 flex items-center justify-center border border-white/10 text-white font-medium p-4 text-center text-xs">
+                <div>
+                  <i class="ph-bold ph-gear-six text-2xl text-accent-violet mb-2"></i>
+                  <p>Settings Preferences</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- APK Action Button -->
+          <div class="flex items-center justify-end border-t border-slate-200 dark:border-slate-800 pt-6 gap-3">
+            <button @click="closeDetails()" class="px-5 py-3 rounded-xl border border-slate-300 dark:border-slate-800 text-xs font-bold hover:bg-slate-200 dark:hover:bg-white/5 transition-colors">
+              Close
+            </button>
+            <a href="#" class="px-6 py-3 rounded-xl bg-gradient-to-r from-accent-cyan to-accent-blue text-white text-xs font-bold shadow-lg shadow-cyan-500/20 hover:scale-[1.02] active:scale-95 transition-transform glass-btn flex items-center gap-2">
+              <i class="ph-bold ph-download-simple"></i>
+              <span>Download APK</span>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-200 dark:border-slate-900 bg-slate-100 bg-opacity-40 dark:bg-darkbg-900 dark:bg-opacity-80 py-12 relative z-10">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12">
+      
+      <div class="flex flex-col gap-4">
+        <a href="index.html" class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-accent-cyan to-accent-blue p-[2px]">
+            <div class="w-full h-full bg-slate-900 rounded-[6px] flex items-center justify-center">
+              <i class="ph-bold ph-android-logo text-accent-cyan text-base"></i>
+            </div>
+          </div>
+          <span class="text-xl font-bold tracking-tight bg-gradient-to-r from-accent-cyan to-accent-blue bg-clip-text text-transparent">AppVerse</span>
+        </a>
+        <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+          Pioneering mobile software engineering with high-fidelity Tahoe glass design languages and native performance solutions.
+        </p>
+      </div>
+
+      <div class="flex flex-col gap-3">
+        <h4 class="text-sm font-bold tracking-wider uppercase opacity-40">Company</h4>
+        <a href="index.html" class="text-xs hover:text-accent-cyan transition-colors">Home</a>
+        <a href="apps.html" class="text-xs hover:text-accent-cyan transition-colors">Apps Portfolio</a>
+        <a href="about.html" class="text-xs hover:text-accent-cyan transition-colors">About Us</a>
+        <a href="contact.html" class="text-xs hover:text-accent-cyan transition-colors">Contact</a>
+      </div>
+
+      <div class="flex flex-col gap-3">
+        <h4 class="text-sm font-bold tracking-wider uppercase opacity-40">Resources</h4>
+        <a href="legal.html" class="text-xs hover:text-accent-cyan transition-colors">Privacy Policy</a>
+        <a href="legal.html" class="text-xs hover:text-accent-cyan transition-colors">Terms of Service</a>
+        <a href="legal.html" class="text-xs hover:text-accent-cyan transition-colors">EULA Documents</a>
+      </div>
+
+      <div class="flex flex-col gap-3">
+        <h4 class="text-sm font-bold tracking-wider uppercase opacity-40">Connect</h4>
+        <span class="text-xs flex items-center gap-2">
+          <i class="ph-bold ph-envelope"></i> hello@appverse.dev
+        </span>
+        <span class="text-xs flex items-center gap-2">
+          <i class="ph-bold ph-map-pin"></i> Silicon Valley, CA
+        </span>
+        <div class="flex items-center gap-3 mt-2">
+          <a href="#" class="w-8 h-8 rounded-lg glass-card flex items-center justify-center hover:text-accent-cyan transition-colors" aria-label="Github"><i class="ph-bold ph-github-logo"></i></a>
+          <a href="#" class="w-8 h-8 rounded-lg glass-card flex items-center justify-center hover:text-accent-cyan transition-colors" aria-label="Twitter"><i class="ph-bold ph-twitter-logo"></i></a>
+          <a href="#" class="w-8 h-8 rounded-lg glass-card flex items-center justify-center hover:text-accent-cyan transition-colors" aria-label="LinkedIn"><i class="ph-bold ph-linkedin-logo"></i></a>
+        </div>
+      </div>
+
+    </div>
+    
+    <div class="max-w-7xl mx-auto px-6 mt-12 pt-6 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <span class="text-[10px] opacity-45">&copy; 2026 AppVerse Technologies Inc. All rights reserved.</span>
+      <span class="text-[10px] opacity-45 flex items-center gap-1">Made for Android with <i class="ph-fill ph-heart text-red-500 animate-pulse"></i></span>
+    </div>
+  </footer>
+
+  <!-- Alpine.js Core -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <!-- Main Controller Script -->
+  <script src="js/main.js"></script>
+  <!-- Apps Data Script -->
+  <script src="js/apps.js"></script>
+</body>
+</html>

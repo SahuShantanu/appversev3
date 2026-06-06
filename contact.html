@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AppVerse - Contact Us</title>
+  <meta name="description" content="Get in touch with AppVerse Android app developers. Ask about custom builds, consultations, and read FAQs.">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Tailwind Theme Config -->
+  <script src="js/tailwind.config.js"></script>
+
+  <!-- Pre-render theme switcher script -->
+  <script src="js/theme.js"></script>
+
+  <!-- Phosphor Icons CDN -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body x-data="globalState" class="bg-slate-50 text-slate-900 dark:bg-darkbg-900 dark:text-slate-100 min-h-screen transition-colors duration-500 overflow-x-hidden relative">
+
+  <!-- Liquid Background Grid Overlay -->
+  <div class="absolute inset-0 bg-[linear-gradient(to_right,rgba(99,102,241,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(99,102,241,0.03)_1px,transparent_1px)] bg-[size:4rem_4rem] dark:bg-[linear-gradient(to_right,rgba(99,102,241,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(99,102,241,0.05)_1px,transparent_1px)] pointer-events-none"></div>
+
+  <!-- Background Morphing Blobs -->
+  <div class="absolute top-20 right-[5%] w-[380px] h-[380px] floating-blob blob-2"></div>
+  <div class="absolute bottom-20 left-10 w-[450px] h-[450px] floating-blob blob-3"></div>
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 w-full px-6 py-4">
+    <div class="max-w-7xl mx-auto glass-card rounded-2xl px-6 py-4 flex items-center justify-between border-opacity-40">
+      
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-accent-cyan via-accent-blue to-accent-violet p-[2px] transition-transform duration-300 group-hover:scale-110">
+          <div class="w-full h-full bg-slate-900 rounded-[10px] flex items-center justify-center">
+            <i class="ph-bold ph-android-logo text-accent-cyan text-2xl"></i>
+          </div>
+        </div>
+        <span class="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-accent-cyan via-accent-blue to-accent-violet bg-clip-text text-transparent">AppVerse</span>
+      </a>
+
+      <!-- Navigation links -->
+      <nav class="hidden md:flex items-center gap-2">
+        <a href="index.html" class="px-4 py-2 rounded-xl text-sm font-semibold hover:bg-slate-200 hover:bg-opacity-50 dark:hover:bg-white dark:hover:bg-opacity-5 text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition-all duration-300">Home</a>
+        <a href="apps.html" class="px-4 py-2 rounded-xl text-sm font-semibold hover:bg-slate-200 hover:bg-opacity-50 dark:hover:bg-white dark:hover:bg-opacity-5 text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition-all duration-300">Apps</a>
+        <a href="about.html" class="px-4 py-2 rounded-xl text-sm font-semibold hover:bg-slate-200 hover:bg-opacity-50 dark:hover:bg-white dark:hover:bg-opacity-5 text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition-all duration-300">About Us</a>
+        <a href="contact.html" class="px-4 py-2 rounded-xl text-sm font-semibold nav-link-active text-slate-900 dark:text-white">Contact</a>
+        <a href="legal.html" class="px-4 py-2 rounded-xl text-sm font-semibold hover:bg-slate-200 hover:bg-opacity-50 dark:hover:bg-white dark:hover:bg-opacity-5 text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition-all duration-300">Legal</a>
+      </nav>
+
+      <!-- Utilities -->
+      <div class="flex items-center gap-3">
+        <!-- Theme Switcher -->
+        <button @click="toggleTheme()" class="w-10 h-10 rounded-xl glass-card flex items-center justify-center text-slate-700 dark:text-slate-200 hover:scale-105 active:scale-95 transition-transform" aria-label="Toggle theme">
+          <template x-if="darkMode">
+            <i class="ph-bold ph-sun text-lg text-amber-400"></i>
+          </template>
+          <template x-if="!darkMode">
+            <i class="ph-bold ph-moon-stars text-lg text-indigo-600"></i>
+          </template>
+        </button>
+
+        <a href="apps.html" class="hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-xl bg-gradient-to-r from-accent-cyan to-accent-blue text-white text-sm font-bold shadow-lg shadow-cyan-500/20 hover:scale-105 transition-all duration-300 glass-btn">
+          View Apps
+        </a>
+
+        <!-- Mobile Toggler -->
+        <button @click="mobileMenuOpen = !mobileMenuOpen" class="md:hidden w-10 h-10 rounded-xl glass-card flex items-center justify-center text-slate-700 dark:text-slate-200 hover:scale-105">
+          <i class="ph-bold" :class="mobileMenuOpen ? 'ph-x' : 'ph-list'"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Dropdown Navigation -->
+  <div x-show="mobileMenuOpen" 
+       x-transition:enter="transition ease-out duration-300"
+       x-transition:enter-start="opacity-0 -translate-y-4"
+       x-transition:enter-end="opacity-100 translate-y-0"
+       x-transition:leave="transition ease-in duration-200"
+       x-transition:leave-start="opacity-100 translate-y-0"
+       x-transition:leave-end="opacity-0 -translate-y-4"
+       class="md:hidden fixed top-24 inset-x-6 z-40"
+       style="display: none;">
+    <div class="glass-card rounded-2xl p-6 flex flex-col gap-4 shadow-xl border-opacity-50">
+      <a href="index.html" class="px-4 py-3 rounded-xl font-medium hover:bg-slate-200 hover:bg-opacity-50 dark:hover:bg-white dark:hover:bg-opacity-5 text-slate-700 dark:text-slate-300">Home</a>
+      <a href="apps.html" class="px-4 py-3 rounded-xl font-medium hover:bg-slate-200 hover:bg-opacity-50 dark:hover:bg-white dark:hover:bg-opacity-5 text-slate-700 dark:text-slate-300">Apps</a>
+      <a href="about.html" class="px-4 py-3 rounded-xl font-medium hover:bg-slate-200 hover:bg-opacity-50 dark:hover:bg-white dark:hover:bg-opacity-5 text-slate-700 dark:text-slate-300">About Us</a>
+      <a href="contact.html" class="px-4 py-3 rounded-xl font-bold bg-slate-200 bg-opacity-60 dark:bg-white dark:bg-opacity-10 text-slate-900 dark:text-white">Contact</a>
+      <a href="legal.html" class="px-4 py-3 rounded-xl font-medium hover:bg-slate-200 hover:bg-opacity-50 dark:hover:bg-white dark:hover:bg-opacity-5 text-slate-700 dark:text-slate-300">Legal</a>
+      <hr class="border-slate-200 dark:border-slate-800">
+      <a href="apps.html" class="w-full text-center py-3 rounded-xl bg-gradient-to-r from-accent-cyan to-accent-blue text-white font-bold glass-btn shadow-lg">Explore Catalog</a>
+    </div>
+  </div>
+
+  <!-- Main Content Body -->
+  <main class="max-w-7xl mx-auto px-6 pt-12 pb-24 relative z-10" x-data="{
+    // Form Inputs
+    formData: {
+      name: '',
+      email: '',
+      subject: '',
+      message: ''
+    },
+    // Error States
+    errors: {
+      name: '',
+      email: '',
+      subject: '',
+      message: ''
+    },
+    successModal: false,
+
+    // Real-time Field Validation Helpers
+    validateName() {
+      if (!this.formData.name.trim()) {
+        this.errors.name = 'Please provide your full name.';
+      } else {
+        this.errors.name = '';
+      }
+    },
+    validateEmail() {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!this.formData.email) {
+        this.errors.email = 'Please provide your email address.';
+      } else if (!emailRegex.test(this.formData.email)) {
+        this.errors.email = 'Please enter a valid email address.';
+      } else {
+        this.errors.email = '';
+      }
+    },
+    validateSubject() {
+      if (!this.formData.subject.trim()) {
+        this.errors.subject = 'Please choose a subject line.';
+      } else {
+        this.errors.subject = '';
+      }
+    },
+    validateMessage() {
+      if (!this.formData.message.trim()) {
+        this.errors.message = 'Please type your project message.';
+      } else if (this.formData.message.trim().length < 10) {
+        this.errors.message = 'Your inquiry details must contain at least 10 characters.';
+      } else {
+        this.errors.message = '';
+      }
+    },
+
+    // Form Submit Handler
+    submitForm() {
+      // Run validations
+      this.validateName();
+      this.validateEmail();
+      this.validateSubject();
+      this.validateMessage();
+
+      // Check for errors
+      const hasErrors = Object.values(this.errors).some(err => err !== '');
+      
+      if (!hasErrors) {
+        // Show success modal
+        this.successModal = true;
+      }
+    },
+
+    closeSuccess() {
+      this.successModal = false;
+      // Reset fields
+      this.formData = { name: '', email: '', subject: '', message: '' };
+    }
+  }">
+    
+    <!-- Title Page Header -->
+    <div class="text-left mb-16 reveal">
+      <h1 class="text-4xl font-extrabold tracking-tight mb-3">Get in Touch</h1>
+      <p class="text-slate-600 dark:text-slate-400 max-w-xl">Have a specialized project inquiry or wish to explore a developmental partnership? Fill out the secure form below.</p>
+    </div>
+
+    <!-- Contact section grid split -->
+    <section class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-24">
+      
+      <!-- Side Contact Info (L: 5 cols) -->
+      <div class="lg:col-span-5 flex flex-col gap-8 reveal">
+        <h2 class="text-2xl font-extrabold leading-tight">Corporate Office Details</h2>
+        <p class="text-slate-600 dark:text-slate-300 leading-relaxed text-sm">
+          We operate custom sprint models. Contact our developers to discuss technical criteria, security structures, and layout milestones.
+        </p>
+
+        <div class="flex flex-col gap-6 mt-4">
+          <!-- Email info -->
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-accent-cyan/10 flex items-center justify-center text-accent-cyan text-lg">
+              <i class="ph-bold ph-envelope-simple"></i>
+            </div>
+            <div>
+              <div class="text-[10px] opacity-60 uppercase font-semibold">General Inquiries</div>
+              <div class="text-sm font-bold text-slate-800 dark:text-white">hello@appverse.dev</div>
+            </div>
+          </div>
+
+          <!-- Location info -->
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-accent-blue/10 flex items-center justify-center text-accent-blue text-lg">
+              <i class="ph-bold ph-map-pin-line"></i>
+            </div>
+            <div>
+              <div class="text-[10px] opacity-60 uppercase font-semibold">Office Address</div>
+              <div class="text-sm font-bold text-slate-800 dark:text-white">350 Tahoe Glass Way, Suite 400<br>Silicon Valley, CA 94025</div>
+            </div>
+          </div>
+
+          <!-- Hours info -->
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-accent-violet/10 flex items-center justify-center text-accent-violet text-lg">
+              <i class="ph-bold ph-clock"></i>
+            </div>
+            <div>
+              <div class="text-[10px] opacity-60 uppercase font-semibold">Business Hours</div>
+              <div class="text-sm font-bold text-slate-800 dark:text-white">Mon - Fri, 9:00 AM - 6:00 PM PST</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Form (R: 7 cols) -->
+      <div class="lg:col-span-7 glass-card rounded-[32px] border-opacity-40 p-8 shadow-xl reveal">
+        <form @submit.prevent="submitForm()" class="flex flex-col gap-6">
+          
+          <!-- Name Field -->
+          <div class="flex flex-col gap-2">
+            <label for="name" class="text-xs font-bold opacity-60">Full Name</label>
+            <input type="text" 
+                   id="name"
+                   x-model="formData.name"
+                   @blur="validateName()"
+                   placeholder="Enter your name" 
+                   class="px-4 py-3 rounded-xl glass-input text-sm font-medium"
+                   :class="errors.name ? 'glass-input-error' : ''">
+            <span x-show="errors.name" class="text-[10px] font-bold text-red-500 mt-1 flex items-center gap-1">
+              <i class="ph-bold ph-warning-circle"></i> <span x-text="errors.name"></span>
+            </span>
+          </div>
+
+          <!-- Email Field -->
+          <div class="flex flex-col gap-2">
+            <label for="email" class="text-xs font-bold opacity-60">Email Address</label>
+            <input type="email" 
+                   id="email"
+                   x-model="formData.email"
+                   @blur="validateEmail()"
+                   placeholder="name@company.com" 
+                   class="px-4 py-3 rounded-xl glass-input text-sm font-medium"
+                   :class="errors.email ? 'glass-input-error' : ''">
+            <span x-show="errors.email" class="text-[10px] font-bold text-red-500 mt-1 flex items-center gap-1">
+              <i class="ph-bold ph-warning-circle"></i> <span x-text="errors.email"></span>
+            </span>
+          </div>
+
+          <!-- Subject Line -->
+          <div class="flex flex-col gap-2">
+            <label for="subject" class="text-xs font-bold opacity-60">Subject</label>
+            <input type="text" 
+                   id="subject"
+                   x-model="formData.subject"
+                   @blur="validateSubject()"
+                   placeholder="Project type or inquiry category" 
+                   class="px-4 py-3 rounded-xl glass-input text-sm font-medium"
+                   :class="errors.subject ? 'glass-input-error' : ''">
+            <span x-show="errors.subject" class="text-[10px] font-bold text-red-500 mt-1 flex items-center gap-1">
+              <i class="ph-bold ph-warning-circle"></i> <span x-text="errors.subject"></span>
+            </span>
+          </div>
+
+          <!-- Message details -->
+          <div class="flex flex-col gap-2">
+            <label for="message" class="text-xs font-bold opacity-60">Project Message</label>
+            <textarea id="message"
+                      x-model="formData.message"
+                      @blur="validateMessage()"
+                      rows="5"
+                      placeholder="Describe your Android application scope, schedule target, and technical specifications..." 
+                      class="px-4 py-3 rounded-xl glass-input text-sm font-medium resize-none"
+                      :class="errors.message ? 'glass-input-error' : ''"></textarea>
+            <span x-show="errors.message" class="text-[10px] font-bold text-red-500 mt-1 flex items-center gap-1">
+              <i class="ph-bold ph-warning-circle"></i> <span x-text="errors.message"></span>
+            </span>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" class="mt-2 w-full py-4 rounded-xl bg-gradient-to-r from-accent-cyan to-accent-blue text-white font-bold shadow-lg shadow-cyan-500/20 hover:scale-[1.01] active:scale-95 transition-transform glass-btn flex items-center justify-center gap-2">
+            <i class="ph-bold ph-paper-plane"></i>
+            <span>Send Secure Inquiry</span>
+          </button>
+
+        </form>
+      </div>
+
+    </section>
+
+    <!-- FAQ Accordion section -->
+    <section x-data="{ activeFaq: null }" class="max-w-4xl mx-auto">
+      
+      <div class="text-center mb-12 reveal">
+        <h2 class="text-2xl sm:text-3xl font-extrabold mb-4">Frequently Asked Questions</h2>
+        <p class="text-slate-600 dark:text-slate-400">Read quick answers regarding our custom Android development services and policies.</p>
+      </div>
+
+      <!-- FAQ Accordion List -->
+      <div class="flex flex-col gap-4">
+        
+        <!-- Accordion 1 -->
+        <div class="glass-card rounded-2xl border-opacity-40 overflow-hidden reveal">
+          <button @click="activeFaq = activeFaq === 1 ? null : 1" class="w-full px-6 py-5 flex items-center justify-between text-left font-bold text-slate-800 dark:text-slate-100 hover:bg-slate-200/40 dark:hover:bg-white/5 transition-colors">
+            <span>Do you build applications for iOS operating system?</span>
+            <i class="ph-bold" :class="activeFaq === 1 ? 'ph-caret-up' : 'ph-caret-down'"></i>
+          </button>
+          <div x-show="activeFaq === 1" 
+               x-transition:enter="transition ease-out duration-200"
+               x-transition:enter-start="max-h-0"
+               x-transition:enter-end="max-h-40"
+               class="px-6 pb-5 text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+            Our lab focuses exclusively on native Android OS engineering to maximize device-specific allocations and hardware optimizations. However, we coordinate regularly with iOS agencies to coordinate dual cross-platform launches.
+          </div>
+        </div>
+
+        <!-- Accordion 2 -->
+        <div class="glass-card rounded-2xl border-opacity-40 overflow-hidden reveal" style="transition-delay: 100ms;">
+          <button @click="activeFaq = activeFaq === 2 ? null : 2" class="w-full px-6 py-5 flex items-center justify-between text-left font-bold text-slate-800 dark:text-slate-100 hover:bg-slate-200/40 dark:hover:bg-white/5 transition-colors">
+            <span>What does your development pricing structure look like?</span>
+            <i class="ph-bold" :class="activeFaq === 2 ? 'ph-caret-up' : 'ph-caret-down'"></i>
+          </button>
+          <div x-show="activeFaq === 2" 
+               x-transition:enter="transition ease-out duration-200"
+               x-transition:enter-start="max-h-0"
+               x-transition:enter-end="max-h-40"
+               class="px-6 pb-5 text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+            We budget projects on a custom scope-and-sprint basis. Pricing varies depending on database requirements, security keys encryption layers, offline usage specs, and visual transition complications.
+          </div>
+        </div>
+
+        <!-- Accordion 3 -->
+        <div class="glass-card rounded-2xl border-opacity-40 overflow-hidden reveal" style="transition-delay: 200ms;">
+          <button @click="activeFaq = activeFaq === 3 ? null : 3" class="w-full px-6 py-5 flex items-center justify-between text-left font-bold text-slate-800 dark:text-slate-100 hover:bg-slate-200/40 dark:hover:bg-white/5 transition-colors">
+            <span>Do you sign Non-Disclosure Agreements (NDAs)?</span>
+            <i class="ph-bold" :class="activeFaq === 3 ? 'ph-caret-up' : 'ph-caret-down'"></i>
+          </button>
+          <div x-show="activeFaq === 3" 
+               x-transition:enter="transition ease-out duration-200"
+               x-transition:enter-start="max-h-0"
+               x-transition:enter-end="max-h-40"
+               class="px-6 pb-5 text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+            Yes. We regularly establish bilateral NDAs with prospective startup partners and enterprise groups before studying code systems, API routes, or architectural blueprints.
+          </div>
+        </div>
+
+        <!-- Accordion 4 -->
+        <div class="glass-card rounded-2xl border-opacity-40 overflow-hidden reveal" style="transition-delay: 300ms;">
+          <button @click="activeFaq = activeFaq === 4 ? null : 4" class="w-full px-6 py-5 flex items-center justify-between text-left font-bold text-slate-800 dark:text-slate-100 hover:bg-slate-200/40 dark:hover:bg-white/5 transition-colors">
+            <span>Can you optimize an existing application for better performance?</span>
+            <i class="ph-bold" :class="activeFaq === 4 ? 'ph-caret-up' : 'ph-caret-down'"></i>
+          </button>
+          <div x-show="activeFaq === 4" 
+               x-transition:enter="transition ease-out duration-200"
+               x-transition:enter-start="max-h-0"
+               x-transition:enter-end="max-h-40"
+               class="px-6 pb-5 text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+            Yes. Our performance team conducts GPU draw profiling, reviews RAM heap allocations, refactors asynchronous database calls, and targets memory leaks to accelerate existing apps.
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- Success Modal Dialog Popup -->
+    <div x-show="successModal" 
+         class="fixed inset-0 z-50 flex items-center justify-center p-6 bg-slate-900/60 dark:bg-black/70 backdrop-blur-md"
+         x-transition:enter="transition ease-out duration-300"
+         x-transition:enter-start="opacity-0"
+         x-transition:enter-end="opacity-100"
+         x-transition:leave="transition ease-in duration-200"
+         x-transition:leave-start="opacity-100"
+         x-transition:leave-end="opacity-0"
+         style="display: none;">
+      
+      <!-- Modal Inner Card -->
+      <div class="glass-card rounded-[32px] w-full max-w-md border-opacity-60 border-white/50 dark:border-white/10 shadow-2xl p-8 text-center relative"
+           x-transition:enter="transition ease-out duration-300"
+           x-transition:enter-start="opacity-0 scale-95"
+           x-transition:enter-end="opacity-100 scale-100"
+           x-transition:leave="transition ease-in duration-200"
+           x-transition:leave-start="opacity-100 scale-100"
+           x-transition:leave-end="opacity-0 scale-95">
+        
+        <div class="w-16 h-16 rounded-2xl bg-emerald-500/20 text-emerald-500 text-3xl flex items-center justify-center mx-auto mb-6">
+          <i class="ph-bold ph-shield-check"></i>
+        </div>
+
+        <h3 class="text-xl font-extrabold mb-3 text-slate-900 dark:text-white">Message Encrypted & Sent</h3>
+        <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mb-6">
+          Thank you, <span x-text="formData.name" class="font-bold text-slate-800 dark:text-white"></span>. Your inquiry has been encrypted and routed to our developer lab. A representative will respond to <span x-text="formData.email" class="font-semibold text-accent-cyan"></span> within 24 hours.
+        </p>
+
+        <button @click="closeSuccess()" class="w-full py-3 rounded-xl bg-slate-900 text-white dark:bg-white dark:text-slate-900 text-sm font-bold shadow-md hover:scale-[1.02] transition-transform">
+          Acknowledge
+        </button>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-200 dark:border-slate-900 bg-slate-100 bg-opacity-40 dark:bg-darkbg-900 dark:bg-opacity-80 py-12 relative z-10">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12">
+      
+      <div class="flex flex-col gap-4">
+        <a href="index.html" class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-accent-cyan to-accent-blue p-[2px]">
+            <div class="w-full h-full bg-slate-900 rounded-[6px] flex items-center justify-center">
+              <i class="ph-bold ph-android-logo text-accent-cyan text-base"></i>
+            </div>
+          </div>
+          <span class="text-xl font-bold tracking-tight bg-gradient-to-r from-accent-cyan to-accent-blue bg-clip-text text-transparent">AppVerse</span>
+        </a>
+        <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+          Pioneering mobile software engineering with high-fidelity Tahoe glass design languages and native performance solutions.
+        </p>
+      </div>
+
+      <div class="flex flex-col gap-3">
+        <h4 class="text-sm font-bold tracking-wider uppercase opacity-40">Company</h4>
+        <a href="index.html" class="text-xs hover:text-accent-cyan transition-colors">Home</a>
+        <a href="apps.html" class="text-xs hover:text-accent-cyan transition-colors">Apps Portfolio</a>
+        <a href="about.html" class="text-xs hover:text-accent-cyan transition-colors">About Us</a>
+        <a href="contact.html" class="text-xs hover:text-accent-cyan transition-colors">Contact</a>
+      </div>
+
+      <div class="flex flex-col gap-3">
+        <h4 class="text-sm font-bold tracking-wider uppercase opacity-40">Resources</h4>
+        <a href="legal.html" class="text-xs hover:text-accent-cyan transition-colors">Privacy Policy</a>
+        <a href="legal.html" class="text-xs hover:text-accent-cyan transition-colors">Terms of Service</a>
+        <a href="legal.html" class="text-xs hover:text-accent-cyan transition-colors">EULA Documents</a>
+      </div>
+
+      <div class="flex flex-col gap-3">
+        <h4 class="text-sm font-bold tracking-wider uppercase opacity-40">Connect</h4>
+        <span class="text-xs flex items-center gap-2">
+          <i class="ph-bold ph-envelope"></i> hello@appverse.dev
+        </span>
+        <span class="text-xs flex items-center gap-2">
+          <i class="ph-bold ph-map-pin"></i> Silicon Valley, CA
+        </span>
+        <div class="flex items-center gap-3 mt-2">
+          <a href="#" class="w-8 h-8 rounded-lg glass-card flex items-center justify-center hover:text-accent-cyan transition-colors" aria-label="Github"><i class="ph-bold ph-github-logo"></i></a>
+          <a href="#" class="w-8 h-8 rounded-lg glass-card flex items-center justify-center hover:text-accent-cyan transition-colors" aria-label="Twitter"><i class="ph-bold ph-twitter-logo"></i></a>
+          <a href="#" class="w-8 h-8 rounded-lg glass-card flex items-center justify-center hover:text-accent-cyan transition-colors" aria-label="LinkedIn"><i class="ph-bold ph-linkedin-logo"></i></a>
+        </div>
+      </div>
+
+    </div>
+    
+    <div class="max-w-7xl mx-auto px-6 mt-12 pt-6 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <span class="text-[10px] opacity-45">&copy; 2026 AppVerse Technologies Inc. All rights reserved.</span>
+      <span class="text-[10px] opacity-45 flex items-center gap-1">Made for Android with <i class="ph-fill ph-heart text-red-500 animate-pulse"></i></span>
+    </div>
+  </footer>
+
+  <!-- Alpine.js Core -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <!-- Main Controller Script -->
+  <script src="js/main.js"></script>
+</body>
+</html>

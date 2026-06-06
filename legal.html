@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AppVerse - Legal Documents</title>
+  <meta name="description" content="Review AppVerse's Privacy Policy, Terms of Service, and End-User License Agreements (EULA).">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Tailwind Theme Config -->
+  <script src="js/tailwind.config.js"></script>
+
+  <!-- Pre-render theme switcher script -->
+  <script src="js/theme.js"></script>
+
+  <!-- Phosphor Icons CDN -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body x-data="globalState" class="bg-slate-50 text-slate-900 dark:bg-darkbg-900 dark:text-slate-100 min-h-screen transition-colors duration-500 overflow-x-hidden relative">
+
+  <!-- Liquid Background Grid Overlay -->
+  <div class="absolute inset-0 bg-[linear-gradient(to_right,rgba(99,102,241,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(99,102,241,0.03)_1px,transparent_1px)] bg-[size:4rem_4rem] dark:bg-[linear-gradient(to_right,rgba(99,102,241,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(99,102,241,0.05)_1px,transparent_1px)] pointer-events-none"></div>
+
+  <!-- Background Morphing Blobs -->
+  <div class="absolute top-20 left-10 w-[350px] h-[350px] floating-blob blob-1"></div>
+  <div class="absolute bottom-20 right-10 w-[450px] h-[450px] floating-blob blob-3"></div>
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 w-full px-6 py-4">
+    <div class="max-w-7xl mx-auto glass-card rounded-2xl px-6 py-4 flex items-center justify-between border-opacity-40">
+      
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-accent-cyan via-accent-blue to-accent-violet p-[2px] transition-transform duration-300 group-hover:scale-110">
+          <div class="w-full h-full bg-slate-900 rounded-[10px] flex items-center justify-center">
+            <i class="ph-bold ph-android-logo text-accent-cyan text-2xl"></i>
+          </div>
+        </div>
+        <span class="text-2xl font-extrabold tracking-tight bg-gradient-to-r from-accent-cyan via-accent-blue to-accent-violet bg-clip-text text-transparent">AppVerse</span>
+      </a>
+
+      <!-- Navigation links -->
+      <nav class="hidden md:flex items-center gap-2">
+        <a href="index.html" class="px-4 py-2 rounded-xl text-sm font-semibold hover:bg-slate-200 hover:bg-opacity-50 dark:hover:bg-white dark:hover:bg-opacity-5 text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition-all duration-300">Home</a>
+        <a href="apps.html" class="px-4 py-2 rounded-xl text-sm font-semibold hover:bg-slate-200 hover:bg-opacity-50 dark:hover:bg-white dark:hover:bg-opacity-5 text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition-all duration-300">Apps</a>
+        <a href="about.html" class="px-4 py-2 rounded-xl text-sm font-semibold hover:bg-slate-200 hover:bg-opacity-50 dark:hover:bg-white dark:hover:bg-opacity-5 text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition-all duration-300">About Us</a>
+        <a href="contact.html" class="px-4 py-2 rounded-xl text-sm font-semibold hover:bg-slate-200 hover:bg-opacity-50 dark:hover:bg-white dark:hover:bg-opacity-5 text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition-all duration-300">Contact</a>
+        <a href="legal.html" class="px-4 py-2 rounded-xl text-sm font-semibold nav-link-active text-slate-900 dark:text-white">Legal</a>
+      </nav>
+
+      <!-- Utilities -->
+      <div class="flex items-center gap-3">
+        <!-- Theme Switcher -->
+        <button @click="toggleTheme()" class="w-10 h-10 rounded-xl glass-card flex items-center justify-center text-slate-700 dark:text-slate-200 hover:scale-105 active:scale-95 transition-transform" aria-label="Toggle theme">
+          <template x-if="darkMode">
+            <i class="ph-bold ph-sun text-lg text-amber-400"></i>
+          </template>
+          <template x-if="!darkMode">
+            <i class="ph-bold ph-moon-stars text-lg text-indigo-600"></i>
+          </template>
+        </button>
+
+        <a href="apps.html" class="hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-xl bg-gradient-to-r from-accent-cyan to-accent-blue text-white text-sm font-bold shadow-lg shadow-cyan-500/20 hover:scale-105 transition-all duration-300 glass-btn">
+          View Apps
+        </a>
+
+        <!-- Mobile Toggler -->
+        <button @click="mobileMenuOpen = !mobileMenuOpen" class="md:hidden w-10 h-10 rounded-xl glass-card flex items-center justify-center text-slate-700 dark:text-slate-200 hover:scale-105">
+          <i class="ph-bold" :class="mobileMenuOpen ? 'ph-x' : 'ph-list'"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Dropdown Navigation -->
+  <div x-show="mobileMenuOpen" 
+       x-transition:enter="transition ease-out duration-300"
+       x-transition:enter-start="opacity-0 -translate-y-4"
+       x-transition:enter-end="opacity-100 translate-y-0"
+       x-transition:leave="transition ease-in duration-200"
+       x-transition:leave-start="opacity-100 translate-y-0"
+       x-transition:leave-end="opacity-0 -translate-y-4"
+       class="md:hidden fixed top-24 inset-x-6 z-40"
+       style="display: none;">
+    <div class="glass-card rounded-2xl p-6 flex flex-col gap-4 shadow-xl border-opacity-50">
+      <a href="index.html" class="px-4 py-3 rounded-xl font-medium hover:bg-slate-200 hover:bg-opacity-50 dark:hover:bg-white dark:hover:bg-opacity-5 text-slate-700 dark:text-slate-300">Home</a>
+      <a href="apps.html" class="px-4 py-3 rounded-xl font-medium hover:bg-slate-200 hover:bg-opacity-50 dark:hover:bg-white dark:hover:bg-opacity-5 text-slate-700 dark:text-slate-300">Apps</a>
+      <a href="about.html" class="px-4 py-3 rounded-xl font-medium hover:bg-slate-200 hover:bg-opacity-50 dark:hover:bg-white dark:hover:bg-opacity-5 text-slate-700 dark:text-slate-300">About Us</a>
+      <a href="contact.html" class="px-4 py-3 rounded-xl font-medium hover:bg-slate-200 hover:bg-opacity-50 dark:hover:bg-white dark:hover:bg-opacity-5 text-slate-700 dark:text-slate-300">Contact</a>
+      <a href="legal.html" class="px-4 py-3 rounded-xl font-bold bg-slate-200 bg-opacity-60 dark:bg-white dark:bg-opacity-10 text-slate-900 dark:text-white">Legal</a>
+      <hr class="border-slate-200 dark:border-slate-800">
+      <a href="apps.html" class="w-full text-center py-3 rounded-xl bg-gradient-to-r from-accent-cyan to-accent-blue text-white font-bold glass-btn shadow-lg">Explore Catalog</a>
+    </div>
+  </div>
+
+  <!-- Main Legal Container -->
+  <main class="max-w-7xl mx-auto px-6 pt-12 pb-24 relative z-10" x-data="{ currentDoc: 'privacy' }">
+    
+    <!-- Title Page Header -->
+    <div class="text-left mb-16 reveal">
+      <h1 class="text-4xl font-extrabold tracking-tight mb-3">Legal Documents</h1>
+      <p class="text-slate-600 dark:text-slate-400 max-w-xl">Review privacy regulations, terms of utilization, and licensing agreements governing our mobile application software.</p>
+    </div>
+
+    <!-- Sidebar Split Grid -->
+    <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- Left Sidebar Selector (L: 4 cols) -->
+      <div class="lg:col-span-4 glass-card rounded-3xl p-5 border-opacity-40 flex flex-col gap-3 reveal">
+        
+        <!-- Tab Privacy -->
+        <button @click="currentDoc = 'privacy'" 
+                class="w-full px-4 py-3.5 rounded-xl text-left text-sm font-bold flex items-center gap-3 transition-all duration-300 border"
+                :class="currentDoc === 'privacy' 
+                  ? 'bg-slate-900 text-white border-transparent dark:bg-white dark:text-slate-900 shadow-md' 
+                  : 'bg-white bg-opacity-20 border-slate-300 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 hover:bg-opacity-50 dark:hover:bg-white dark:hover:bg-opacity-5'">
+          <i class="ph-bold ph-shield-check text-lg"></i>
+          <span>Privacy Policy</span>
+        </button>
+
+        <!-- Tab Terms -->
+        <button @click="currentDoc = 'terms'" 
+                class="w-full px-4 py-3.5 rounded-xl text-left text-sm font-bold flex items-center gap-3 transition-all duration-300 border"
+                :class="currentDoc === 'terms' 
+                  ? 'bg-slate-900 text-white border-transparent dark:bg-white dark:text-slate-900 shadow-md' 
+                  : 'bg-white bg-opacity-20 border-slate-300 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 hover:bg-opacity-50 dark:hover:bg-white dark:hover:bg-opacity-5'">
+          <i class="ph-bold ph-scales text-lg"></i>
+          <span>Terms of Service</span>
+        </button>
+
+        <!-- Tab EULA -->
+        <button @click="currentDoc = 'eula'" 
+                class="w-full px-4 py-3.5 rounded-xl text-left text-sm font-bold flex items-center gap-3 transition-all duration-300 border"
+                :class="currentDoc === 'eula' 
+                  ? 'bg-slate-900 text-white border-transparent dark:bg-white dark:text-slate-900 shadow-md' 
+                  : 'bg-white bg-opacity-20 border-slate-300 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 hover:bg-opacity-50 dark:hover:bg-white dark:hover:bg-opacity-5'">
+          <i class="ph-bold ph-scroll text-lg"></i>
+          <span>EULA Agreement</span>
+        </button>
+
+        <hr class="border-slate-200 dark:border-slate-800 my-2">
+
+        <!-- Print Action Button -->
+        <button @click="window.print()" class="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200/50 dark:hover:bg-white/5 text-xs font-bold flex items-center justify-center gap-2 transition-colors">
+          <i class="ph-bold ph-printer"></i>
+          <span>Print Document</span>
+        </button>
+      </div>
+
+      <!-- Right Main Document View (R: 8 cols) -->
+      <div class="lg:col-span-8 glass-card rounded-[32px] border-opacity-40 p-8 md:p-12 shadow-xl reveal">
+        
+        <!-- PRIVACY POLICY CONTENT -->
+        <div x-show="currentDoc === 'privacy'" 
+             x-transition:enter="transition ease-out duration-300"
+             x-transition:enter-start="opacity-0 translate-y-4"
+             x-transition:enter-end="opacity-100 translate-y-0"
+             class="flex flex-col gap-6">
+          <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-6">
+            <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white">Privacy Policy</h2>
+            <span class="text-[10px] opacity-60 font-semibold">Last Updated: May 24, 2026</span>
+          </div>
+
+          <div class="text-sm leading-relaxed text-slate-600 dark:text-slate-300 flex flex-col gap-6">
+            <p>At AppVerse, we recognize that physical privacy and data safety are fundamental. Our applications are engineered from the base level upwards to prevent telemetry data reporting and external surveillance tracking.</p>
+            
+            <div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white mb-2">1. Information Collection and Telemetry</h3>
+              <p>Our applications collect zero personal data, network location files, address book items, or device-specific identification tokens. We do not integrate data analysis tools or ad networking trackers in any APK file builds.</p>
+            </div>
+
+            <div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white mb-2">2. Local Storage and Keystore Protection</h3>
+              <p>All database files, login hashes, configuration preferences, and cryptographic keys generated during app execution reside purely on the physical device storage. Sensitive identifiers are encrypted under the native hardware Android Keystore System and cannot be retrieved externally.</p>
+            </div>
+
+            <div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white mb-2">3. Policy Revisions</h3>
+              <p>AppVerse reserves the right to modify this safety policy to accommodate native Android system upgrades. Any revisions will be published immediately on this portal.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- TERMS OF SERVICE CONTENT -->
+        <div x-show="currentDoc === 'terms'" 
+             x-transition:enter="transition ease-out duration-300"
+             x-transition:enter-start="opacity-0 translate-y-4"
+             x-transition:enter-end="opacity-100 translate-y-0"
+             class="flex flex-col gap-6"
+             style="display: none;">
+          <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-6">
+            <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white">Terms of Service</h2>
+            <span class="text-[10px] opacity-60 font-semibold">Last Updated: May 24, 2026</span>
+          </div>
+
+          <div class="text-sm leading-relaxed text-slate-600 dark:text-slate-300 flex flex-col gap-6">
+            <p>By downloading or running APK binaries supplied by AppVerse, you establish a binding contract under these service parameters.</p>
+            
+            <div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white mb-2">1. Permitted License</h3>
+              <p>We grant users a revocable, non-exclusive, non-transferable, limited license to run AppVerse application binaries solely for personal, non-commercial purposes on compatible Android devices.</p>
+            </div>
+
+            <div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white mb-2">2. Use Restrictions</h3>
+              <p>You agree not to modify, reverse-engineer, decompile, disassemble, or derive the primary source code of any AppVerse application binaries, nor bypass security system checks or cryptographic structures.</p>
+            </div>
+
+            <div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white mb-2">3. Warranty Disclaimer</h3>
+              <p>AppVerse applications are provided "as-is" and "as-available" without warranties of any category. We hold no liability for physical device failures, data loss, or system issues occurring from execution.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- EULA CONTENT -->
+        <div x-show="currentDoc === 'eula'" 
+             x-transition:enter="transition ease-out duration-300"
+             x-transition:enter-start="opacity-0 translate-y-4"
+             x-transition:enter-end="opacity-100 translate-y-0"
+             class="flex flex-col gap-6"
+             style="display: none;">
+          <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-6">
+            <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white">EULA Agreement</h2>
+            <span class="text-[10px] opacity-60 font-semibold">Last Updated: May 24, 2026</span>
+          </div>
+
+          <div class="text-sm leading-relaxed text-slate-600 dark:text-slate-300 flex flex-col gap-6">
+            <p>Please read this End-User License Agreement ("EULA") carefully before utilizing AppVerse application binaries.</p>
+            
+            <div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white mb-2">1. Intellectual Property</h3>
+              <p>All copyright titles, visual art assets, interface structures, brand names, and compiled source code contained within our binaries are the exclusive property of AppVerse Technologies Inc.</p>
+            </div>
+
+            <div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white mb-2">2. Agreement Termination</h3>
+              <p>This EULA remains active until terminated. Your rights under this agreement terminate immediately without notice from AppVerse if you violate any parameters, upon which you must delete all copies of our APKs.</p>
+            </div>
+
+            <div>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white mb-2">3. Governing Jurisdiction</h3>
+              <p>This EULA and any disputes arising from it shall be governed by and construed in accordance with the laws of the State of California, USA.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-200 dark:border-slate-900 bg-slate-100 bg-opacity-40 dark:bg-darkbg-900 dark:bg-opacity-80 py-12 relative z-10">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12">
+      
+      <div class="flex flex-col gap-4">
+        <a href="index.html" class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-accent-cyan to-accent-blue p-[2px]">
+            <div class="w-full h-full bg-slate-900 rounded-[6px] flex items-center justify-center">
+              <i class="ph-bold ph-android-logo text-accent-cyan text-base"></i>
+            </div>
+          </div>
+          <span class="text-xl font-bold tracking-tight bg-gradient-to-r from-accent-cyan to-accent-blue bg-clip-text text-transparent">AppVerse</span>
+        </a>
+        <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+          Pioneering mobile software engineering with high-fidelity Tahoe glass design languages and native performance solutions.
+        </p>
+      </div>
+
+      <div class="flex flex-col gap-3">
+        <h4 class="text-sm font-bold tracking-wider uppercase opacity-40">Company</h4>
+        <a href="index.html" class="text-xs hover:text-accent-cyan transition-colors">Home</a>
+        <a href="apps.html" class="text-xs hover:text-accent-cyan transition-colors">Apps Portfolio</a>
+        <a href="about.html" class="text-xs hover:text-accent-cyan transition-colors">About Us</a>
+        <a href="contact.html" class="text-xs hover:text-accent-cyan transition-colors">Contact</a>
+      </div>
+
+      <div class="flex flex-col gap-3">
+        <h4 class="text-sm font-bold tracking-wider uppercase opacity-40">Resources</h4>
+        <a href="legal.html" class="text-xs hover:text-accent-cyan transition-colors">Privacy Policy</a>
+        <a href="legal.html" class="text-xs hover:text-accent-cyan transition-colors">Terms of Service</a>
+        <a href="legal.html" class="text-xs hover:text-accent-cyan transition-colors">EULA Documents</a>
+      </div>
+
+      <div class="flex flex-col gap-3">
+        <h4 class="text-sm font-bold tracking-wider uppercase opacity-40">Connect</h4>
+        <span class="text-xs flex items-center gap-2">
+          <i class="ph-bold ph-envelope"></i> hello@appverse.dev
+        </span>
+        <span class="text-xs flex items-center gap-2">
+          <i class="ph-bold ph-map-pin"></i> Silicon Valley, CA
+        </span>
+        <div class="flex items-center gap-3 mt-2">
+          <a href="#" class="w-8 h-8 rounded-lg glass-card flex items-center justify-center hover:text-accent-cyan transition-colors" aria-label="Github"><i class="ph-bold ph-github-logo"></i></a>
+          <a href="#" class="w-8 h-8 rounded-lg glass-card flex items-center justify-center hover:text-accent-cyan transition-colors" aria-label="Twitter"><i class="ph-bold ph-twitter-logo"></i></a>
+          <a href="#" class="w-8 h-8 rounded-lg glass-card flex items-center justify-center hover:text-accent-cyan transition-colors" aria-label="LinkedIn"><i class="ph-bold ph-linkedin-logo"></i></a>
+        </div>
+      </div>
+
+    </div>
+    
+    <div class="max-w-7xl mx-auto px-6 mt-12 pt-6 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <span class="text-[10px] opacity-45">&copy; 2026 AppVerse Technologies Inc. All rights reserved.</span>
+      <span class="text-[10px] opacity-45 flex items-center gap-1">Made for Android with <i class="ph-fill ph-heart text-red-500 animate-pulse"></i></span>
+    </div>
+  </footer>
+
+  <!-- Alpine.js Core -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <!-- Main Controller Script -->
+  <script src="js/main.js"></script>
+</body>
+</html>
